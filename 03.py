@@ -5,10 +5,10 @@ from sys import argv
 from sys import maxsize
 from Graph import isGraphical
 from Graph import Graph
-from Dijkstra import dijkstra
-from Dijkstra import distMatrix
-from Dijkstra import centrum
-from Dijkstra import minimax
+from Alghoritms import dijkstra
+from Alghoritms import distMatrix
+from Alghoritms import centrum
+from Alghoritms import minimax
 	
 seq = [int(i) for i in argv[1:]]
 flag = isGraphical(seq)
@@ -19,6 +19,7 @@ if flag:
 	print("\nMacierz wag poszczególnych krawędzi:")
 	for i in range(len(graph.EV)):
 		print(graph.EV[i])
+	
 	
 
 	dists= distMatrix(graph)

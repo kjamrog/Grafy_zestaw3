@@ -3,7 +3,9 @@
 from sys import maxsize
 from Graph import Graph
 
-# algorytm dijkstry
+# algorytm dijkstry, jako argument przyjmuje graf oraz nr wierzchołka stanowiącego źródło
+# zwraca słownik, w którym kluczem są wierzchołḱi a wartościami ich odległości od źródła
+# wypisuje ścieżki pomiędzy danym wierzchołkiem a źródłem
 
 def dijkstra(graph, source):
 	prevs={i:None for i in range(graph.vertex)}
@@ -17,8 +19,22 @@ def dijkstra(graph, source):
 		for v in graph.AL[u]:
 			if dist[v]>(dist[u]+graph.EV[u][v]):
 				dist[v] = dist[u]+graph.EV[u][v]
-				prevs[v] = u	
-	return dist
+				prevs[v] = u
+	
+	print("\nScieżki pomiędzy poszczególnymi wierzchołkami dla źródła",source,":")
+	for i in range(graph.vertex):
+		if(i==source):
+			continue
+		w=i
+		print("from",i , "to", source, end=":\n")
+		while prevs[w]!=None:
+			w=prevs[w]
+			print("->",w, end=" ")
+		print()
+
+
+	return dist 
+
 
 def extractMin(Q, dist):
 	i=Q[0]
@@ -39,6 +55,8 @@ def distMatrix(graph):
 	return matrix
 		
 
+# algorytm wypisujący centrum grafu
+
 def centrum(matrix):
 	l=sum(matrix[0])
 	m=0
@@ -49,6 +67,8 @@ def centrum(matrix):
 			m=i+1
 	print("Centrum tego grafu to wierzchołek ", m)
 
+
+# algorytm wypisujący centrum mini-max grafu
 	
 def minimax(matrix):
 	l=max(matrix[0])
