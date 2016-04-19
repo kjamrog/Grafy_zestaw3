@@ -83,10 +83,37 @@ def minimax(matrix):
 
 
 
+# algorytm prima
+class PriorityQueue:
+	def __init__(self, vertex):
+		self.d = {i:20 for i in range(vertex)}
+		
+		
+	def pop(self):
+		minimum = min(self.d.values())
+		u=0
+		for i in self.d:
+			if self.d[i]==minimum:
+				u=i
+				break
+		self.d.pop(u)
+		return u
+		
+	def empty(self):
+		return self.d
+		
+	
+def prim(graph, r):
+	q = PriorityQueue(graph.vertex)
+	q.d[r] = 1
 
-
-
-
-
-
+	pre = [None for i in range(graph.vertex)]
+	
+	while q.empty():
+		u = q.pop()
+		for v in graph.AL[u]:
+			if v in q.d and graph.EV[u][v] < q.d[v]:
+				pre[v] = u
+				q.d[v] = graph.EV[u][v]
+	return pre
 

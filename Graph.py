@@ -23,7 +23,7 @@ def isGraphical(seq):
 			return False
 
 
-# klasa Graph, tworzona na podstawie ciągu graficznego	
+# klasa Graph, tworzona na podstawie ciągu graficznego - zrobić dziedziczenie !
 class Graph:
 	# konstrukcja grafu
 	def __init__(self, seq):

@@ -9,6 +9,7 @@ from Alghoritms import dijkstra
 from Alghoritms import distMatrix
 from Alghoritms import centrum
 from Alghoritms import minimax
+from Alghoritms import prim
 	
 seq = [int(i) for i in argv[1:]]
 flag = isGraphical(seq)
@@ -30,4 +31,5 @@ if flag:
 
 	centrum(dists)
 	minimax(dists)
-
+	print( prim(graph, 0) )
+	
