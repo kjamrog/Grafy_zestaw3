@@ -1,9 +1,12 @@
-#!/usr/bin/env python3.4
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 # Moduł zawierający: 
 # funkcję sprawdzającą czy ciąg jest graficzny
 # klasę Graph
 
+import networkx as nx
+import matplotlib.pyplot as plt
 
 from random import randrange
 
@@ -133,5 +136,22 @@ class Graph:
 				if(self.AM[i][j] == 1):
 					temp[i][j]=temp[j][i] = randint(1,10)
 		return temp
+		
+	def draw(self):
+		g = nx.Graph()
+		for i in range(self.vertex):
+			for j in range(1, self.vertex-i):
+				if i != j:
+					g.add_edge(i, j, weight=self.EV[i][j])
 				
+		pos = nx.shell_layout(g)
+		nx.draw_networkx_nodes(g, pos, node_size=300)
+		nx.draw_networkx_edges(g, pos)
+		nx.draw_networkx_labels(g, pos)
+		nx.draw_networkx_edge_labels(g, pos)
+
+		plt.axis('off')
+		plt.savefig("Graph.png")
+		plt.close()
+			
 

@@ -1,4 +1,5 @@
-#!/usr/bin/env python3.4
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 
 from sys import argv
@@ -9,8 +10,11 @@ from Alghoritms import dijkstra
 from Alghoritms import distMatrix
 from Alghoritms import centrum
 from Alghoritms import minimax
-from Alghoritms import prim
+from Alghoritms import Prim
 	
+import matplotlib.pyplot as plt
+
+
 seq = [int(i) for i in argv[1:]]
 flag = isGraphical(seq)
 if flag:
@@ -21,15 +25,19 @@ if flag:
 	for i in range(len(graph.EV)):
 		print(graph.EV[i])
 	
-	
+	graph.draw()
 
 	dists= distMatrix(graph)
 	print("\nMacierz odległości wierzchołków:")
 	for i in dists:
-		print(i)
-	print()
+		print i
+	print
 
 	centrum(dists)
 	minimax(dists)
-	print( prim(graph, 0) )
+	
+	prim = Prim(graph, 0)
+	print( prim.pre )
+	prim.draw()
+
 	

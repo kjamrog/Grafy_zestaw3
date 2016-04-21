@@ -1,7 +1,19 @@
-#!/usr/bin/env python3.4
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# punkcja zachowujaca sie jak print w python3.x
+from __future__ import print_function
 
 from sys import maxsize
 from Graph import Graph
+
+# rysowanie minimalnego drzewa rozpinającego
+
+import networkx as nx
+import matplotlib.pyplot as plt
+
+
+
 
 # algorytm dijkstry, jako argument przyjmuje graf oraz nr wierzchołka stanowiącego źródło
 # zwraca słownik, w którym kluczem są wierzchołḱi a wartościami ich odległości od źródła
@@ -20,16 +32,17 @@ def dijkstra(graph, source):
 			if dist[v]>(dist[u]+graph.EV[u][v]):
 				dist[v] = dist[u]+graph.EV[u][v]
 				prevs[v] = u
-	
+
 	print("\nScieżki pomiędzy poszczególnymi wierzchołkami dla źródła",source,":")
 	for i in range(graph.vertex):
 		if(i==source):
 			continue
 		w=i
 		print("from",i , "to", source, end=":\n")
+		print(i, end=" ")
 		while prevs[w]!=None:
 			w=prevs[w]
-			print("->",w, end=" ")
+			print("->", w, end=" ")
 		print()
 
 
@@ -103,17 +116,38 @@ class PriorityQueue:
 		return self.d
 		
 	
-def prim(graph, r):
-	q = PriorityQueue(graph.vertex)
-	q.d[r] = 1
+class Prim:
+	def __init__(self, graph, r):
+		self.r = r
+		self.graph = graph
+		q = PriorityQueue(graph.vertex)
+		q.d[r] = 1
 
-	pre = [None for i in range(graph.vertex)]
+		self.pre = [None for i in range(graph.vertex)]
 	
-	while q.empty():
-		u = q.pop()
-		for v in graph.AL[u]:
-			if v in q.d and graph.EV[u][v] < q.d[v]:
-				pre[v] = u
-				q.d[v] = graph.EV[u][v]
-	return pre
+		while q.empty():
+			u = q.pop()
+			for v in graph.AL[u]:
+				if v in q.d and graph.EV[u][v] < q.d[v]:
+					self.pre[v] = u
+					q.d[v] = graph.EV[u][v]
+		
+	
+	def draw(self):
+		g = nx.Graph()
+		for i in range(1, len(self.pre)):
+		    j = self.pre[i]
+		    g.add_edge(i, j, weight=self.graph.EV[i][j])
+		            
+
+		pos = nx.shell_layout(g)
+		nx.draw_networkx_nodes(g, pos, node_size=300)
+		nx.draw_networkx_edges(g, pos)
+		nx.draw_networkx_labels(g, pos)
+		nx.draw_networkx_edge_labels(g, pos)
+
+		plt.axis('off')
+		plt.savefig("Prim.png")
+		plt.close()
+		
 
