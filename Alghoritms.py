@@ -12,9 +12,6 @@ from Graph import Graph
 import networkx as nx
 import matplotlib.pyplot as plt
 
-
-
-
 # algorytm dijkstry, jako argument przyjmuje graf oraz nr wierzchołka stanowiącego źródło
 # zwraca słownik, w którym kluczem są wierzchołḱi a wartościami ich odległości od źródła
 # wypisuje ścieżki pomiędzy danym wierzchołkiem a źródłem

@@ -11,8 +11,6 @@ from Alghoritms import distMatrix
 from Alghoritms import centrum
 from Alghoritms import minimax
 from Alghoritms import Prim
-	
-import matplotlib.pyplot as plt
 
 
 seq = [int(i) for i in argv[1:]]
