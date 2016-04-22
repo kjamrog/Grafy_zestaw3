@@ -134,7 +134,7 @@ class Prim:
 		g = nx.Graph()
 		for i in range(1, len(self.pre)):
 		    j = self.pre[i]
-		    g.add_edge(i, j, weight=self.graph.EV[i][j])
+		    g.add_edge(i, j, w=self.graph.EV[i][j])
 		            
 
 		pos = nx.shell_layout(g)

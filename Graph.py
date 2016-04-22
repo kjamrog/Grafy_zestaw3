@@ -130,19 +130,20 @@ class Graph:
 		
 	def makeEV(self):
 		from random import randint
+		
 		temp = [ [0 for j in i] for i in self.AM]
 		for i in range(len(self.AM)):
-			for j in range(len(self.AM)-i):
+			for j in range(i, len(self.AM)):
 				if(self.AM[i][j] == 1):
-					temp[i][j]=temp[j][i] = randint(1,10)
+					temp[i][j]=temp[j][i] = randint(1,9)
 		return temp
 		
 	def draw(self):
 		g = nx.Graph()
 		for i in range(self.vertex):
-			for j in range(1, self.vertex-i):
-				if i != j:
-					g.add_edge(i, j, weight=self.EV[i][j])
+			for j in range(i, self.vertex):
+				if self.EV[i][j] != 0:
+					g.add_edge(i, j, w=self.EV[i][j])
 				
 		pos = nx.shell_layout(g)
 		nx.draw_networkx_nodes(g, pos, node_size=300)
