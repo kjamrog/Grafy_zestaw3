@@ -39,5 +39,5 @@ if flag:
 	print( prim.pre )
 	prim.draw()
 
-	print
+	print()
 	

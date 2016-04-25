@@ -98,7 +98,6 @@ class PriorityQueue:
 	def __init__(self, vertex):
 		self.d = {i:20 for i in range(vertex)}
 		
-		
 	def pop(self):
 		minimum = min(self.d.values())
 		u=0
@@ -106,6 +105,7 @@ class PriorityQueue:
 			if self.d[i]==minimum:
 				u=i
 				break
+		
 		self.d.pop(u)
 		return u
 		
